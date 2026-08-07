@@ -95,25 +95,6 @@
     Wenn Sie Musik oder ein Video in einem Media Player wie Spotify, YouTube oder YTMusic auf Ihrem Telefon abspielen, überspringt diese Aktion den aktuellen Titel und spielt den nächsten ab.
     Sie funktioniert auch mit Android Auto.
     ]]></string>
-    <string name="set_prayer_alarms">Gebetsalarme einstellen</string>
-    <string name="prayer_times_info"><![CDATA[
-    <li>Diese Aktion stellt die 5 Alarme auf der Uhr auf die islamischen Gebetszeiten <b>Fajr</b>, <b>Dhuhr</b>, <b>Asr</b>, <b>Maghrib</b> und <b>Isha</b> ein.</li>
-    <li>Die Zeiten variieren je nach Ihrem Standort und dem aktuellen Datum, daher wird empfohlen, diese Aktion täglich auszuführen.
-    Wenn diese Aktion aktiviert ist, werden die Alarme auch automatisch während der automatischen Zeiteinstellung 4-mal täglich aktualisiert.</li>
-    <li>Die folgenden Berechnungsmethoden werden je nach Ihrem Standort verwendet:
-        <b>NORDAMERIKA</b>,
-        <b>DİYANET</b>,
-        <b>EGYPTISCH</b>,
-        <b>DUBAI</b>,
-        <b>UMM AL QURA</b>,
-        <b>QATAR</b>,
-        <b>SINGAPUR</b>,
-        <b>KUWAIT</b> und
-        <b>ISLAMISCHE WELTVERBAND</b> überall anders.
-    </li>
-    <li>Für Vorschläge und Korrekturen kontaktieren Sie <a href="mailto:izivkov@gmail.com">izivkov@gmail.com</a></li>
-]]></string>
-
     <string name="enter_timer_time">Timerzeit eingeben</string>
     <string name="max_reminders_reached">Maximale Anzahl an Erinnerungen erreicht, bitte deaktivieren Sie einige, bevor Sie neue auswählen</string>
 

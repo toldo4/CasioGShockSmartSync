@@ -95,25 +95,6 @@
         Si estàs reproduint música o vídeo en un reproductor com Spotify, YouTube o YTMusic, aquesta acció passarà a la següent cançó o vídeo.
         També funciona amb Android Auto.
         ]]></string>
-    <string name="set_prayer_alarms">Alarmes de pregària</string>
-    <string name="prayer_times_info"><![CDATA[
-        <li>Aquesta acció configura les 5 alarmes del rellotge als horaris musulmans de pregària: <b>Fajr</b>, <b>Dhuhr</b>, <b>Asr</b>, <b>Maghrib</b> i <b>Isha</b>.</li>
-        <li>Els horaris varien segons la teva ubicació i data actual, per això és recomanable executar aquesta acció diàriament.
-        Si està activada, les alarmes també s\'actualitzaran automàticament durant l\'ajust d\'hora, 4 vegades al dia.</li>
-        <li>Els mètodes de càlcul utilitzats, segons la ubicació, són:
-            <b>NORD-AMÈRICA</b>,
-            <b>DİYANET</b>,
-            <b>EGIPTE</b>,
-            <b>DUBAI</b>,
-            <b>UMM AL QURA</b>,
-            <b>QATAR</b>,
-            <b>SINGAPORE</b>,
-            <b>KUWAIT</b> i
-            <b>MUSLIM WORLD LEAGUE</b> a la resta de llocs.
-        </li>
-        <li>Per suggeriments i correccions, contacta amb <a href="mailto:izivkov@gmail.com">izivkov@gmail.com</a></li>
-    ]]></string>
-
     <string name="enter_timer_time">Introduir temps del temporitzador</string>
     <string name="max_reminders_reached">S\'ha arribat al màxim nombre de recordatoris, si us plau desactiva alguns abans de seleccionar-ne de nous</string>
 

@@ -92,24 +92,6 @@
     <string name="adjustment_time_minutes">Időbeállítás késleltetése\n(perc)</string>
     <string name="skip_to_next_track_info"><![CDATA[
         Ha a telefonon támogatott zenelejátszó alkalmazás fut (pl. Spotify, Youtube, YouTube Music), akkor az óra jobb alsó gombjának megnyomásával a következő zeneszámra lehet léptetni. Ez a funkció Android Auto-val is működik.]]></string>
-    <string name="set_prayer_alarms">Imaidők</string>
-    <string name="prayer_times_info"><![CDATA[
-        <li>Az Iszlám vallásban a napi imák ideje (<b>Fadzsr</b>, <b>Dhúr</b>, <b>Ászr</b>, <b>Magrib</b>, és <b>Isa</b>) napi szinten változik.</li>
-        <li>Az imaidők a telefon helymeghatározási szoltáltatása alapján kerülnek kiszámításra. Ezt a feladatot célszerű naponta futtatni, hogy az imaidőt pontosan jelezze. Ha ez be van kapcsolva, akkor az öt ébresztési időpont automatikusan a napi/helyi imaidőkre lesz állítva.</li>
-        <li>Az alábbi helyekre külön számítási algoritmus van az alkalmazásban:
-            <b>Észak-Amerika</b>,
-            <b>Diyanet</b>,
-            <b>Egyiptom</b>,
-            <b>Dubaj</b>,
-            <b>Umm Al Kura</b>,
-            <b>Katar</b>,
-            <b>Szingapúr</b>,
-            <b>Kuvait</b> és
-            <b>Muszlim világliga</b> a világ bármely más részén.
-        </li>
-        <li>Ha bármi kérés van ezzel kapcsolatban, akkor (angolul) ide lehet írni: <a href="mailto:izivkov@gmail.com">izivkov@gmail.com</a></li>
-    ]]></string>
-
     <string name="enter_timer_time">Időtartam:</string>
     <string name="max_reminders_reached">Ennél több emlékezetőt nem lehet beállítani.</string>
 

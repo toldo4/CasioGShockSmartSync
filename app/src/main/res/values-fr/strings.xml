@@ -100,25 +100,6 @@ lorsque vous voyagez dans un autre fuseau horaire.]]>
 Si vous écoutez de la musique ou regardez une vidéo sur une application de lecture multimédia comme Spotify, YouTube ou YTMusic sur votre téléphone, cette action passera à la chanson ou vidéo suivante.
 Cela fonctionne également avec Android Auto.
 ]]></string>
-    <string name="set_prayer_alarms">Alarmes de prière</string>
-    <string name="prayer_times_info"><![CDATA[
-<li>Cette action définira les 5 alarmes de la montre pour les prières musulmanes <b>Fajr</b>, <b>Dhuhr</b>, <b>Asr</b>, <b>Maghrib</b> et <b>Isha</b>.</li>
-<li>Les horaires varient en fonction de votre emplacement et de la date actuelle, il est donc recommandé d\'exécuter cette action quotidiennement.
-Si cette action est activée, les alarmes seront également mises à jour automatiquement lors de l\'ajustement automatique de l\'heure, 4 fois par jour.</li>
-<li>Les méthodes de calcul suivantes sont utilisées en fonction de votre emplacement :
-<b>AMÉRIQUE DU NORD</b>,
-<b>DİYANET</b>,
-<b>ÉGYPTIENNE</b>,
-<b>DUBAÏ</b>,
-<b>UMM AL QURA</b>,
-<b>QATAR</b>,
-<b>SINGAPOUR</b>,
-<b>KOWEÏT</b> et
-<b>LIGUE MONDIALE MUSULMANE</b> partout ailleurs.
-</li>
-<li>Pour des suggestions ou corrections, contactez <a href="mailto:izivkov@gmail.com">izivkov@gmail.com</a></li>
-]]></string>
-
     <string name="enter_timer_time">Entrez l\'heure du minuteur</string>
     <string name="max_reminders_reached">Nombre maximum de rappels atteint. Veuillez en désactiver certains avant de sélectionner de nouveaux.</string>
 

@@ -21,7 +21,10 @@ class ActionsStorage @Inject constructor(
         FLASHLIGHT,
         VOICE_ASSIST,
         SKIP_TO_NEXT_TRACK,
-        PRAYER_ALARMS,
+        // Reserved: the Prayer Alarms action was removed, but this slot must stay so the
+        // bit positions of later actions (and the encoded size) match watches that
+        // already have settings saved in their scratchpad.
+        PRAYER_ALARMS_RESERVED,
         PHONE_CALL
     }
 

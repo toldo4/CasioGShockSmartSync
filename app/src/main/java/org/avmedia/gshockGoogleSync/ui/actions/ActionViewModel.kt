@@ -56,7 +56,6 @@ class ActionsViewModel
 @Inject
 constructor(
         private val api: GShockRepository,
-        private val prayerAlarmsHelper: PrayerAlarmsHelper,
         @param:ApplicationContext val appContext: Context, // Inject application context
         private val calendarEvents: CalendarEvents,
         private val actionsStorage: ActionsStorage,
@@ -198,7 +197,6 @@ constructor(
                             CameraOrientation.BACK
                     )
             )
-            add(PrayerAlarmsAction("Set Prayer Alarms", false, api, prayerAlarmsHelper))
             add(Separator(appContext.getString(R.string.emergency_actions), false))
             add(PhoneDialAction(appContext.getString(R.string.make_phonecall), false, ""))
         }
@@ -248,7 +246,6 @@ constructor(
                         is ToggleFlashlightAction -> ActionsStorage.Action.FLASHLIGHT
                         is StartVoiceAssistAction -> ActionsStorage.Action.VOICE_ASSIST
                         is NextTrack -> ActionsStorage.Action.SKIP_TO_NEXT_TRACK
-                        is PrayerAlarmsAction -> ActionsStorage.Action.PRAYER_ALARMS
                         is PhoneDialAction -> ActionsStorage.Action.PHONE_CALL
                         else -> null
                     }
@@ -266,7 +263,6 @@ constructor(
                         is ToggleFlashlightAction -> ActionsStorage.Action.FLASHLIGHT
                         is StartVoiceAssistAction -> ActionsStorage.Action.VOICE_ASSIST
                         is NextTrack -> ActionsStorage.Action.SKIP_TO_NEXT_TRACK
-                        is PrayerAlarmsAction -> ActionsStorage.Action.PRAYER_ALARMS
                         is PhoneDialAction -> ActionsStorage.Action.PHONE_CALL
                         else -> null
                     }
@@ -472,52 +468,6 @@ constructor(
                             AppSnackbar(context.getString(R.string.cannot_go_to_next_track))
                         }
                     }
-        }
-    }
-
-    inner class PrayerAlarmsAction(
-            override var title: String,
-            override var enabled: Boolean,
-            val api: GShockRepository,
-            val prayerAlarmsHelper: PrayerAlarmsHelper
-    ) : Action(title, enabled, RunMode.ASYNC) {
-
-        private var lastSet: Long? = null
-
-        override fun shouldRun(runEnvironment: RunEnvironment): Boolean {
-            // update every 6 hours
-            val setTimeConditionAlwaysConnected =
-                    (enabled &&
-                            watchFeatureManager.isFeatureSupported("time_adjustment.always_connected") &&
-                            (lastSet == null ||
-                                    System.currentTimeMillis() - lastSet!! > 6000 * 60 * 60))
-
-            return when (runEnvironment) {
-                RunEnvironment.NORMAL_CONNECTION -> enabled
-                RunEnvironment.ACTION_BUTTON_PRESSED -> enabled
-                RunEnvironment.AUTO_TIME_ADJUSTMENT -> enabled
-                RunEnvironment.FIND_PHONE_PRESSED -> false
-                RunEnvironment.ALWAYS_CONNECTED -> setTimeConditionAlwaysConnected
-            }
-        }
-
-        override fun run(context: Context) {
-            Timber.d("running ${this.javaClass.simpleName}")
-            // vvv 4. CALL THE METHOD ON THE INSTANCE vvv
-            CoroutineScope(Dispatchers.Main).launch {
-                prayerAlarmsHelper
-                        .createNextPrayerAlarms(watchFeatureManager.getAlarmCount())
-                        .onSuccess { alarms ->
-                            // getAlarms need to be run first, otherwise setAlarms() will not work
-                            api.getAlarms()
-                            api.setAlarms(ArrayList(alarms))
-                            lastSet = System.currentTimeMillis()
-                        }
-                        .onFailure { error ->
-                            Timber.e("Could not set prayer alarms: ${error.message}")
-                            AppSnackbar("Failed to set prayer alarms: ${error.message}")
-                        }
-            }
         }
     }
 

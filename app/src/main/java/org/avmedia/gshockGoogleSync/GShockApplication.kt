@@ -127,7 +127,9 @@ class GShockApplication : Application(), IScreenManager {
                 }
             }
         )
-        ProgressEvents.runEventActions(Utils.AppHashCode(), buttonActions)
+        // Distinct subscriber name: MainEventHandler already registers under AppHashCode(),
+        // and ProgressEvents keys subscribers by name.
+        ProgressEvents.runEventActions(Utils.AppHashCode() + "buttonActions", buttonActions)
 
         // Triggered by messages rather than button presses, e.g. "FindPhone" on always-connected watches
         val otherActions = arrayOf(

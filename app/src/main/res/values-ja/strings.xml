@@ -99,27 +99,6 @@
         Android Autoにも対応しています。
         ]]>
     </string>
-    <string name="set_prayer_alarms">礼拝アラームを設定</string>
-    <string name="prayer_times_info">
-        <![CDATA[
-        <li>このアクションでは、時計の5つのアラームを<b>ファジュル</b>、<b>ズフル</b>、<b>アスル</b>、<b>マグリブ</b>、<b>イシャー</b>の礼拝時間に設定します。</li>
-        <li>時間は現在地と日付に応じて異なるため、正確性を高めるにはこのアクションを毎日実行してください。
-        このアクションが有効な場合、アラームは1日4回の自動時間調整中にも自動的に更新されます。</li>
-        <li>計算方法は場所に基づいて次のように変わります：
-            <b>北アメリカ</b>、
-            <b>ディヤネット</b>、
-            <b>エジプト</b>、
-            <b>ドバイ</b>、
-            <b>ウム・アルクラ</b>、
-            <b>カタール</b>、
-            <b>シンガポール</b>、
-            <b>クウェート</b>、および
-            <b>イスラム世界連盟</b>（その他の地域）。
-        </li>
-        <li>提案や訂正については、<a href="mailto:izivkov@gmail.com">izivkov@gmail.com</a>までご連絡ください。</li>
-        ]]>
-    </string>
-
     <string name="enter_timer_time">タイマー時間を入力</string>
     <string name="max_reminders_reached">リマインダーの最大数に達しました。一部を無効にしてから新しいリマインダーを選択してください。</string>
 

@@ -93,25 +93,6 @@
         Si estás reproduciendo música o un video en un reproductor de medios como Spotify, YouTube o YTMusic en tu teléfono, esta acción saltará a la siguiente canción o video.
         También funciona con Android Auto
     ]]></string>
-    <string name="set_prayer_alarms">Alarmas oración</string>
-    <string name="prayer_times_info"><![CDATA[
-        <li>Esta acción configurará las 5 alarmas del reloj para las oraciones musulmanas <b>Fajr</b>, <b>Dhuhr</b>, <b>Asr</b>, <b>Maghrib</b> y <b>Isha</b>.</li>
-        <li>Los horarios varían según tu ubicación y la fecha actual, por lo que para obtener la mejor precisión, ejecuta esta acción a diario.
-        Si esta acción está habilitada, las alarmas también se actualizarán automáticamente durante el ajuste automático de la hora, 4 veces al día.</li>
-        <li>Se utilizan los siguientes métodos de cálculo, según tu ubicación:
-            <b>AMÉRICA DEL NORTE</b>,
-            <b>DİYANET</b>,
-            <b>EGIPCIO</b>,
-            <b>EMIRATOS ÁRABES UNIDOS</b>,
-            <b>UMM AL QURA</b>,
-            <b>QATAR</b>,
-            <b>SINGAPUR</b>,
-            <b>KUWAIT</b> y
-            <b>LA LIGA MUSULMANA MUNDIAL</b> en otros lugares.
-        </li>
-        <li>Para sugerencias y correcciones contacta a <a href="mailto:izivkov@gmail.com">izivkov@gmail.com</a></li>
-    ]]></string>
-
     <string name="enter_timer_time">Introducir tiempo del temporizador</string>
     <string name="max_reminders_reached">Número máximo de recordatorios alcanzado, por favor desactiva algunos antes de seleccionar nuevos</string>
 

@@ -202,12 +202,48 @@ class DeviceAssociationManager @Inject constructor(
                         android.app.PendingIntent.FLAG_MUTABLE
             )
 
-        repository.startFallbackScan(context, addresses, pendingIntent)
+        if (addresses.isEmpty()) {
+            repository.startFallbackScan(context, addresses, pendingIntent)
+            activeScanAddresses = null
+            return
+        }
 
-        activeScanAddresses = if (addresses.isEmpty()) {
-            null
-        } else {
-            newAddressesSet
+        // Issue the scan here rather than via repository.startFallbackScan(), which uses
+        // SCAN_MODE_LOW_POWER (~512ms of listening per 5120ms). With the screen off that duty
+        // cycle, plus Doze, means the watch's short advertising burst after a button press is
+        // usually missed entirely -- measured: zero discoveries in screen-off windows longer
+        // than ~30s, but a discovery 131ms after the screen was tapped, proving the watch was
+        // advertising the whole time and the phone simply was not listening.
+        val scanner = android.bluetooth.BluetoothAdapter.getDefaultAdapter()?.bluetoothLeScanner
+        if (scanner == null) {
+            Timber.w("No BLE scanner available (adapter off?); falling back to library scan")
+            repository.startFallbackScan(context, addresses, pendingIntent)
+            activeScanAddresses = newAddressesSet
+            return
+        }
+
+        val filters = addresses.map {
+            android.bluetooth.le.ScanFilter.Builder().setDeviceAddress(it.uppercase()).build()
+        }
+        val settings = android.bluetooth.le.ScanSettings.Builder()
+            .setScanMode(android.bluetooth.le.ScanSettings.SCAN_MODE_LOW_LATENCY)
+            .setCallbackType(android.bluetooth.le.ScanSettings.CALLBACK_TYPE_FIRST_MATCH)
+            .setMatchMode(android.bluetooth.le.ScanSettings.MATCH_MODE_AGGRESSIVE)
+            .setNumOfMatches(android.bluetooth.le.ScanSettings.MATCH_NUM_ONE_ADVERTISEMENT)
+            .build()
+
+        try {
+            scanner.stopScan(pendingIntent) // clear any previous registration for this intent
+            val result = scanner.startScan(filters, settings, pendingIntent)
+            Timber.i("Fallback scan started LOW_LATENCY for ${addresses.size} address(es), rc=$result")
+            activeScanAddresses = newAddressesSet
+        } catch (e: Throwable) {
+            // Missing permission, adapter mid-transition, or an OEM build that rejects these
+            // settings -- fall back rather than take the process down from this IO coroutine.
+            Timber.e(e, "LOW_LATENCY fallback scan failed; using library scan instead")
+            runCatching { repository.startFallbackScan(context, addresses, pendingIntent) }
+                .onFailure { Timber.e(it, "Library fallback scan also failed") }
+            activeScanAddresses = newAddressesSet
         }
     }
 }

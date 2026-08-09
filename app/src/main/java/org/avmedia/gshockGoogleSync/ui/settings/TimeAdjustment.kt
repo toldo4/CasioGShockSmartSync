@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.Checkbox
@@ -29,6 +30,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import org.avmedia.gshockGoogleSync.R
 import org.avmedia.gshockGoogleSync.ui.common.AppCard
 import org.avmedia.gshockGoogleSync.ui.common.InfoButton
+import org.avmedia.gshockGoogleSync.ui.common.ListRowMinHeight
 import org.avmedia.gshockGoogleSync.ui.common.LocalWatchFeatureManager
 import org.avmedia.gshockGoogleSync.ui.common.ValueSelectionDialog
 import org.avmedia.gshockGoogleSync.ui.common.WatchFeature
@@ -82,6 +84,7 @@ fun TimeAdjustment(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .heightIn(min = ListRowMinHeight)
                         .padding(start = 12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -114,6 +117,7 @@ fun TimeAdjustment(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .heightIn(min = ListRowMinHeight)
                         .padding(start = 12.dp, end = 12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {

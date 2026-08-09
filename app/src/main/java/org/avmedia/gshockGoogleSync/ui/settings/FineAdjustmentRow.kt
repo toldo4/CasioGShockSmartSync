@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.avmedia.gshockGoogleSync.R
 import org.avmedia.gshockGoogleSync.ui.common.InfoButton
+import org.avmedia.gshockGoogleSync.ui.common.ListRowMinHeight
 import org.avmedia.gshockGoogleSync.ui.common.ValueSelectionDialog
 
 @Composable
@@ -28,7 +30,9 @@ fun FineAdjustmentRow(
     onValueChange: (Int) -> Unit
 ) {
     Row(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(min = ListRowMinHeight),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AppText(

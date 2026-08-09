@@ -4,7 +4,7 @@ import android.app.Activity
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalView
@@ -13,10 +13,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.core.view.WindowCompat
 
 // A single locked scheme: the LCD looks like an LCD in both system themes, so there
-// is no dark variant and no dynamic (Material You) colour. Dynamic colour in
+// is no light variant and no dynamic (Material You) colour. Dynamic colour in
 // particular has to stay off -- it overrides every colour below on Android 12+.
+//
+// darkColorScheme, so that any token not named here (and Material's own elevation
+// overlays) resolves dark rather than fighting the near-black backing.
 private val LcdColorScheme =
-        lightColorScheme(
+        darkColorScheme(
                 primary = LcdInk,
                 onPrimary = LcdBackground,
                 primaryContainer = LcdSurfaceVariant,
@@ -49,7 +52,9 @@ private val LcdColorScheme =
                 inverseSurface = LcdInk,
                 inverseOnSurface = LcdBackground,
                 inversePrimary = LcdBackground,
-                scrim = LcdInk,
+                // Near-black, not ink: the scrim dims what is behind a dialog, and ink
+                // is now the light colour.
+                scrim = LcdBackground,
         )
 
 @Composable
@@ -68,10 +73,10 @@ fun GShockSmartSyncTheme(
             val window = activity?.window
 
             if (window != null) {
-                // The LCD backing is light, so status bar icons must be dark.
+                // The LCD backing is near-black, so status bar icons must be light.
                 val insetsController = WindowCompat.getInsetsController(window, view)
-                insetsController.isAppearanceLightStatusBars = true
-                insetsController.isAppearanceLightNavigationBars = true
+                insetsController.isAppearanceLightStatusBars = false
+                insetsController.isAppearanceLightNavigationBars = false
             }
         }
     }

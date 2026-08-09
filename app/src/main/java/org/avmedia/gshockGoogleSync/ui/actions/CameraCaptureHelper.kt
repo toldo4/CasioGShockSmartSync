@@ -155,8 +155,8 @@ class CameraCaptureHelper(
                 SimpleDateFormat("yyyy:MM:dd HH:mm:ss", Locale.US)
                         .format(System.currentTimeMillis())
 
-        exif.setAttribute(ExifInterface.TAG_USER_COMMENT, "Created by GShock Smart Sync")
-        exif.setAttribute(ExifInterface.TAG_SOFTWARE, "G-Shock Smart Sync")
+        exif.setAttribute(ExifInterface.TAG_USER_COMMENT, "Created by Casio Sync")
+        exif.setAttribute(ExifInterface.TAG_SOFTWARE, "Casio Sync")
         exif.setAttribute(
                 ExifInterface.TAG_COPYRIGHT,
                 "https://github.com/izivkov/CasioGShockSmartSync"

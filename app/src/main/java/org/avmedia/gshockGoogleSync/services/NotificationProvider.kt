@@ -16,8 +16,8 @@ class NotificationProvider @Inject constructor(
 ) {
     data class NotificationConfig(
         val channelId: String = CHANNEL_ID,
-        val channelName: String = "G-Shock Smart Sync",
-        val channelDescription: String = "This channel provides notifications for the Casio G-Shock Smart Sync App",
+        val channelName: String = "Casio Sync",
+        val channelDescription: String = "This channel provides notifications for the Casio Sync App",
         val importance: Int = NotificationManager.IMPORTANCE_DEFAULT,
         val notificationId: Int = 1
     )

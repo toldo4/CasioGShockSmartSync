@@ -738,7 +738,7 @@ constructor(
         val text = "Time set at $dateStr for $watchName watch"
 
         notificationProvider.createNotification(
-                NotificationProvider.NotificationContent(title = "G-Shock Smart Sync", text = text)
+                NotificationProvider.NotificationContent(title = "Casio Sync", text = text)
         )
     }
 

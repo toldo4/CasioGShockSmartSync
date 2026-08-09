@@ -2,11 +2,11 @@ package org.avmedia.gshockGoogleSync.ui.settings
 
 import AppSwitch
 import AppText
-import AppTextLarge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.Checkbox
@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import org.avmedia.gshockGoogleSync.R
 import org.avmedia.gshockGoogleSync.ui.common.AppCard
+import org.avmedia.gshockGoogleSync.ui.common.ListRowMinHeight
 import org.avmedia.gshockGoogleSync.ui.common.WatchFeature
 
 @Composable
@@ -53,10 +54,11 @@ fun OperationalTone(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .heightIn(min = ListRowMinHeight)
                         .padding(start = 12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    AppTextLarge(
+                    AppText(
                         text = stringResource(id = R.string.operational_sound),
                         modifier = Modifier.padding(end = 6.dp)
                     )
@@ -78,6 +80,7 @@ fun OperationalTone(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .heightIn(min = ListRowMinHeight)
                         .padding(start = 12.dp, top = 0.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {

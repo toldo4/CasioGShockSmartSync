@@ -1,7 +1,6 @@
 package org.avmedia.gshockGoogleSync.ui.settings
 
 import AppText
-import AppTextLarge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -52,7 +51,7 @@ fun Font(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                AppTextLarge(
+                AppText(
                         text = stringResource(id = R.string.font),
                 )
 

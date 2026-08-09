@@ -33,10 +33,10 @@ fun FineAdjustmentRow(
     ) {
         AppText(
             text = stringResource(id = R.string.fine_adjustment),
-            fontSize = 20.sp,
             modifier = Modifier.padding(end = 6.dp)
         )
         InfoButton(
+            iconSize = 22.dp,
             infoText = stringResource(id = R.string.fine_adjustment_info)
         )
 

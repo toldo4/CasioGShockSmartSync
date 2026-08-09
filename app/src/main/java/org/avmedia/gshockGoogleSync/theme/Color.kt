@@ -2,67 +2,31 @@ package org.avmedia.gshockGoogleSync.theme
 
 import androidx.compose.ui.graphics.Color
 
-// G-Shock Expressive Palette
+// Retro Casio LCD palette.
+//
+// The look is a segment display: a green-grey backing lit from behind, with
+// near-black "ink" for lit segments and a washed-out version of that ink for
+// unlit/secondary text. There is deliberately no colour hue beyond the green-grey
+// and the ink -- an LCD only has two states, so accents are made with weight and
+// borders instead of hue.
 
-// Primary - Electric Violet / Blue
-val PrimaryLight = Color(0xFF6200EE)
-val OnPrimaryLight = Color(0xFFFFFFFF)
-val PrimaryContainerLight = Color(0xFFEADDFF)
-val OnPrimaryContainerLight = Color(0xFF21005D)
+// Backing plate, lightest to darkest.
+val LcdBackground = Color(0xFFC5CCB8)      // the screen itself
+val LcdSurface = Color(0xFFC5CCB8)
+val LcdSurfaceContainer = Color(0xFFBCC4AE) // panels sitting on the screen
+val LcdSurfaceVariant = Color(0xFFB0B9A1)   // recessed / pressed areas
 
-// Secondary - Teal / Cyan (Vibrant accent)
-val SecondaryLight = Color(0xFF03DAC6)
-val OnSecondaryLight = Color(0xFF000000)
-val SecondaryContainerLight = Color(0xFFCEF9F3)
-val OnSecondaryContainerLight = Color(0xFF001F1C)
+// Ink.
+val LcdInk = Color(0xFF1C1F18)             // lit segment, full contrast
+val LcdInkDim = Color(0xFF4A5044)          // secondary text
+val LcdInkGhost = Color(0xFF8A9280)        // unlit segment / disabled
 
-// Tertiary - Pink / Magenta (Playful accent)
-val TertiaryLight = Color(0xFFEF0078)
-val OnTertiaryLight = Color(0xFFFFFFFF)
-val TertiaryContainerLight = Color(0xFFFFD8E4)
-val OnTertiaryContainerLight = Color(0xFF31111D)
+// Structure.
+val LcdOutline = Color(0xFF6E7566)         // hairline borders between panels
+val LcdOutlineStrong = Color(0xFF2E3D2A)   // emphasised border, e.g. focused control
 
-// Error
-val ErrorLight = Color(0xFFB00020)
-val OnErrorLight = Color(0xFFFFFFFF)
-val ErrorContainerLight = Color(0xFFF9DEDC)
-val OnErrorContainerLight = Color(0xFF410E0B)
-
-// Neutral / Background
-val BackgroundLight = Color(0xFFFDFBFF)
-val OnBackgroundLight = Color(0xFF1B1B1F)
-val SurfaceLight = Color(0xFFFDFBFF)
-val OnSurfaceLight = Color(0xFF1B1B1F)
-val SurfaceVariantLight = Color(0xFFE7E0EC)
-val OnSurfaceVariantLight = Color(0xFF49454F)
-val OutlineLight = Color(0xFF79747E)
-
-
-// Dark Theme Colors
-val PrimaryDark = Color(0xFFD0BCFF)
-val OnPrimaryDark = Color(0xFF381E72)
-val PrimaryContainerDark = Color(0xFF4F378B)
-val OnPrimaryContainerDark = Color(0xFFEADDFF)
-
-val SecondaryDark = Color(0xFF66FFF9)
-val OnSecondaryDark = Color(0xFF003734)
-val SecondaryContainerDark = Color(0xFF00504D)
-val OnSecondaryContainerDark = Color(0xFFCEF9F3)
-
-val TertiaryDark = Color(0xFFFFB0C9)
-val OnTertiaryDark = Color(0xFF650031)
-val TertiaryContainerDark = Color(0xFF8E0045)
-val OnTertiaryContainerDark = Color(0xFFFFD8E4)
-
-val ErrorDark = Color(0xFFF2B8B5)
-val OnErrorDark = Color(0xFF601410)
-val ErrorContainerDark = Color(0xFF8C1D18)
-val OnErrorContainerDark = Color(0xFFF9DEDC)
-
-val BackgroundDark = Color(0xFF1B1B1F)
-val OnBackgroundDark = Color(0xFFE4E1E6)
-val SurfaceDark = Color(0xFF1B1B1F)
-val OnSurfaceDark = Color(0xFFE4E1E6)
-val SurfaceVariantDark = Color(0xFF49454F)
-val OnSurfaceVariantDark = Color(0xFFCAC4D0)
-val OutlineDark = Color(0xFF938F99)
+// The one place a hue is allowed: alerts, matching an LCD backlight warning.
+val LcdError = Color(0xFF8C2016)
+val LcdOnError = Color(0xFFE6E9DE)
+val LcdErrorContainer = Color(0xFFB8A99C)
+val LcdOnErrorContainer = Color(0xFF3A0F0A)

@@ -36,7 +36,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -427,11 +427,17 @@ fun RemoveButton(onClick: () -> Unit) {
         modifier =
             Modifier
                 .size(18.dp)
-                .border(0.5.dp, Color.White.copy(alpha = 0.5f), CircleShape)
-                .background(Color.Black, CircleShape)
+                .background(MaterialTheme.colorScheme.onSurface, RectangleShape)
                 .clickable(onClick = onClick, role = Role.Button),
         contentAlignment = Alignment.Center
-    ) { Icon(Icons.Default.Remove, "Remove", modifier = Modifier.size(12.dp), tint = Color.White) }
+    ) {
+        Icon(
+            Icons.Default.Remove,
+            "Remove",
+            modifier = Modifier.size(12.dp),
+            tint = MaterialTheme.colorScheme.surface
+        )
+    }
 }
 
 @Composable
@@ -460,13 +466,12 @@ fun PairButton(modifier: Modifier = Modifier, onClick: () -> Unit, isFlashing: B
             modifier =
                 Modifier
                     .size(56.dp)
-                    .alpha(if (isFlashing) alpha else 1f)
-                    .border(1.dp, Color.White, CircleShape),
-            shape = CircleShape,
+                    .alpha(if (isFlashing) alpha else 1f),
+            shape = RectangleShape,
             colors =
                 ButtonDefaults.buttonColors(
-                    containerColor = Color.Black,
-                    contentColor = Color.White
+                    containerColor = MaterialTheme.colorScheme.onSurface,
+                    contentColor = MaterialTheme.colorScheme.surface
                 ),
             contentPadding = PaddingValues(0.dp)
         ) { Icon(Icons.Default.Add, "Add", modifier = Modifier.size(32.dp)) }
@@ -479,7 +484,7 @@ fun WatchScreen(imageResId: Int, isAlwaysConnected: Boolean) {
         if (isAlwaysConnected) {
             WatchImageWithOverlayAlwaysConnected(Modifier, imageResId)
         } else {
-            WatchImageWithOverlay(Modifier, imageResId, 0.55f)
+            WatchImageWithOverlay(Modifier, imageResId)
         }
     }
 }

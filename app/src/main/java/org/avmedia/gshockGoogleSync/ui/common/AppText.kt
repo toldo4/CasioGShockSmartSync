@@ -23,7 +23,9 @@ fun AppText(
     fontSize: TextUnit = 16.sp,
     fontStyle: FontStyle? = null,
     fontWeight: FontWeight? = null,
-    fontFamily: FontFamily? = null,
+    // Explicit: this wrapper passes `style` to Text, which replaces LocalTextStyle
+    // instead of merging with it, so the theme's font would not otherwise apply.
+    fontFamily: FontFamily? = FontFamily.Monospace,
     letterSpacing: TextUnit = TextUnit.Unspecified,
     textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,

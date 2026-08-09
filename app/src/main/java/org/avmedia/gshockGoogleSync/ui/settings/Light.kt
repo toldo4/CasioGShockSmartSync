@@ -2,7 +2,6 @@ package org.avmedia.gshockGoogleSync.ui.settings
 
 import AppSwitch
 import AppText
-import AppTextLarge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -66,7 +65,7 @@ fun Light(
                         modifier = Modifier.weight(1f),
                         verticalArrangement = Arrangement.Center
                     ) {
-                        AppTextLarge(
+                        AppText(
                             text = stringResource(id = R.string.auto_light),
                             modifier = Modifier.padding(end = 6.dp)
                         )
@@ -87,7 +86,7 @@ fun Light(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    AppTextLarge(
+                    AppText(
                         text = Utils.shortenString(
                             stringResource(id = R.string.illumination_period),
                             20

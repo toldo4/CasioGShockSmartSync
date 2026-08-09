@@ -1,11 +1,12 @@
 package org.avmedia.gshockGoogleSync.ui.settings
 
 import AppSwitch
-import AppTextLarge
+import AppText
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.avmedia.gshockGoogleSync.ui.common.AppCard
+import org.avmedia.gshockGoogleSync.ui.common.ListRowMinHeight
 import org.avmedia.gshockGoogleSync.ui.common.WatchFeature
 
 @Composable
@@ -30,6 +32,7 @@ fun BasicSettings(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .heightIn(min = ListRowMinHeight)
                     .padding(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 0.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -38,7 +41,7 @@ fun BasicSettings(
                     modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.Center
                 ) {
-                    AppTextLarge(
+                    AppText(
                         text = title,
                         modifier = Modifier.padding(end = 6.dp)
                     )

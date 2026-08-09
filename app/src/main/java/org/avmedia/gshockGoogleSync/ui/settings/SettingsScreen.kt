@@ -149,7 +149,7 @@ fun BottomRow(modifier: Modifier, settingsViewModel: SettingsViewModel = hiltVie
                     .padding(end = 0.dp),
                 contentAlignment =
                 Alignment.CenterEnd // Aligns content to the right
-            ) { InfoButton(infoText = stringResource(id = R.string.auto_fill_help)) }
+            ) { InfoButton(iconSize = 22.dp, infoText = stringResource(id = R.string.auto_fill_help)) }
 
             val buttons =
                 arrayListOf(

@@ -2,7 +2,6 @@ package org.avmedia.gshockGoogleSync.ui.settings
 
 import AppSwitch
 import AppText
-import AppTextLarge
 import AppTextLink
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -86,13 +85,14 @@ fun TimeAdjustment(
                         .padding(start = 12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    AppTextLarge(
+                    AppText(
                         text = stringResource(
                             id = R.string.time_adjustment
                         ),
                         modifier = Modifier.padding(end = 6.dp)
                     )
                     InfoButton(
+                        iconSize = 22.dp,
                         infoText = stringResource(
                             id = R.string.time_adjustment_info
                         )
@@ -121,10 +121,10 @@ fun TimeAdjustment(
                         text = stringResource(
                             id = R.string.adjustment_time_minutes
                         ),
-                        fontSize = 20.sp,
                         modifier = Modifier.padding(end = 6.dp)
                     )
                     InfoButton(
+                        iconSize = 22.dp,
                         infoText = stringResource(
                             id = R.string.adjustment_time_info
                         )

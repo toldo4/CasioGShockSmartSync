@@ -5,6 +5,7 @@ import AppTextLarge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,6 +16,7 @@ import org.avmedia.gshockGoogleSync.ui.common.AppCard
 import org.avmedia.gshockGoogleSync.ui.common.AppIconFromResource
 import org.avmedia.gshockGoogleSync.ui.common.HorizontalSeparator
 import org.avmedia.gshockGoogleSync.ui.common.InfoButton
+import org.avmedia.gshockGoogleSync.ui.common.ListRowMinHeight
 
 @Composable
 fun ActionItem(
@@ -32,6 +34,7 @@ fun ActionItem(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .heightIn(min = ListRowMinHeight)
                 .padding(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 0.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween

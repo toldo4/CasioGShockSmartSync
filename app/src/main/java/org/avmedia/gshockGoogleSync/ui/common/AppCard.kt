@@ -14,11 +14,14 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AppCard(
     modifier: Modifier = Modifier,
-    padding: Dp = 2.dp,
-    elevation: Dp = 4.dp,
-    borderWidth: Dp = 0.dp,
-    borderColor: Color = Color.Transparent,
-    containerColor: Color = if (androidx.compose.foundation.isSystemInDarkTheme()) MaterialTheme.colorScheme.surfaceContainer else MaterialTheme.colorScheme.surfaceContainer,
+    padding: Dp = 3.dp,
+    // Flat by default. Elevation implies a surface floating above another one, which
+    // is the opposite of a segment printed onto a single sheet of glass; panels are
+    // separated by a hairline rule instead.
+    elevation: Dp = 0.dp,
+    borderWidth: Dp = 1.dp,
+    borderColor: Color = MaterialTheme.colorScheme.outline,
+    containerColor: Color = MaterialTheme.colorScheme.surfaceContainer,
     content: @Composable () -> Unit,
 ) {
     Card(

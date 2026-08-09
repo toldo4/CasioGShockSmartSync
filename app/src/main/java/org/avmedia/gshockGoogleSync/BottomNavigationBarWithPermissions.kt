@@ -11,8 +11,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -92,14 +95,21 @@ fun BottomNavigationBarWithPermissions(
             .detectInactivity(inactivityHandler),
         bottomBar = {
             NavigationBar(
-                modifier = Modifier.padding(0.dp)
+                modifier = Modifier.padding(0.dp),
+                containerColor = MaterialTheme.colorScheme.surfaceContainer,
+                // Flat: the bar is part of the same sheet as the screen above it,
+                // separated by the hairline rule below rather than by a shadow.
+                tonalElevation = 0.dp
             ) {
                 BottomNavigationItem().bottomNavigationItems()
                     .forEachIndexed { _, navigationItem ->
                         NavigationBarItem(
                             selected = navigationItem.route == currentDestination?.route,
                             label = {
-                                Text(navigationItem.label)
+                                Text(
+                                    navigationItem.label.uppercase(),
+                                    style = MaterialTheme.typography.labelSmall
+                                )
                             },
                             icon = {
                                 Icon(
@@ -107,6 +117,16 @@ fun BottomNavigationBarWithPermissions(
                                     contentDescription = navigationItem.label
                                 )
                             },
+                            colors = NavigationBarItemDefaults.colors(
+                                selectedIconColor = MaterialTheme.colorScheme.onSurface,
+                                selectedTextColor = MaterialTheme.colorScheme.onSurface,
+                                unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                                // The default pill indicator is the loudest rounded
+                                // shape left in the app; drop it and mark the active
+                                // tab with the always-on label plus ink contrast.
+                                indicatorColor = Color.Transparent
+                            ),
                             onClick = {
                                 navController.navigate(navigationItem.route) {
                                     popUpTo(navController.graph.findStartDestination().id) {
@@ -116,7 +136,7 @@ fun BottomNavigationBarWithPermissions(
                                     restoreState = true
                                 }
                             },
-                            alwaysShowLabel = false,
+                            alwaysShowLabel = true,
                         )
                     }
             }

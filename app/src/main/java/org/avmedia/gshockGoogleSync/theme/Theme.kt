@@ -1,101 +1,66 @@
 package org.avmedia.gshockGoogleSync.theme
 
 import android.app.Activity
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.core.view.WindowCompat
 
-// Expressive light and dark color schemes
-private val LightColorScheme =
+// A single locked scheme: the LCD looks like an LCD in both system themes, so there
+// is no dark variant and no dynamic (Material You) colour. Dynamic colour in
+// particular has to stay off -- it overrides every colour below on Android 12+.
+private val LcdColorScheme =
         lightColorScheme(
-                primary = PrimaryLight,
-                onPrimary = OnPrimaryLight,
-                primaryContainer = PrimaryContainerLight,
-                onPrimaryContainer = OnPrimaryContainerLight,
-                secondary = SecondaryLight,
-                onSecondary = OnSecondaryLight,
-                secondaryContainer = SecondaryContainerLight,
-                onSecondaryContainer = OnSecondaryContainerLight,
-                tertiary = TertiaryLight,
-                onTertiary = OnTertiaryLight,
-                tertiaryContainer = TertiaryContainerLight,
-                onTertiaryContainer = OnTertiaryContainerLight,
-                error = ErrorLight,
-                onError = OnErrorLight,
-                errorContainer = ErrorContainerLight,
-                onErrorContainer = OnErrorContainerLight,
-                background = BackgroundLight,
-                onBackground = OnBackgroundLight,
-                surface = SurfaceLight,
-                onSurface = OnSurfaceLight,
-                surfaceVariant = SurfaceVariantLight,
-                onSurfaceVariant = OnSurfaceVariantLight,
-                outline = OutlineLight,
+                primary = LcdInk,
+                onPrimary = LcdBackground,
+                primaryContainer = LcdSurfaceVariant,
+                onPrimaryContainer = LcdInk,
+                secondary = LcdInkDim,
+                onSecondary = LcdBackground,
+                secondaryContainer = LcdSurfaceVariant,
+                onSecondaryContainer = LcdInk,
+                tertiary = LcdOutlineStrong,
+                onTertiary = LcdBackground,
+                tertiaryContainer = LcdSurfaceVariant,
+                onTertiaryContainer = LcdInk,
+                error = LcdError,
+                onError = LcdOnError,
+                errorContainer = LcdErrorContainer,
+                onErrorContainer = LcdOnErrorContainer,
+                background = LcdBackground,
+                onBackground = LcdInk,
+                surface = LcdSurface,
+                onSurface = LcdInk,
+                surfaceVariant = LcdSurfaceVariant,
+                onSurfaceVariant = LcdInkDim,
+                surfaceContainerLowest = LcdBackground,
+                surfaceContainerLow = LcdSurfaceContainer,
+                surfaceContainer = LcdSurfaceContainer,
+                surfaceContainerHigh = LcdSurfaceVariant,
+                surfaceContainerHighest = LcdSurfaceVariant,
+                outline = LcdOutline,
+                outlineVariant = LcdInkGhost,
+                inverseSurface = LcdInk,
+                inverseOnSurface = LcdBackground,
+                inversePrimary = LcdBackground,
+                scrim = LcdInk,
         )
 
-private val DarkColorScheme =
-        darkColorScheme(
-                primary = PrimaryDark,
-                onPrimary = OnPrimaryDark,
-                primaryContainer = PrimaryContainerDark,
-                onPrimaryContainer = OnPrimaryContainerDark,
-                secondary = SecondaryDark,
-                onSecondary = OnSecondaryDark,
-                secondaryContainer = SecondaryContainerDark,
-                onSecondaryContainer = OnSecondaryContainerDark,
-                tertiary = TertiaryDark,
-                onTertiary = OnTertiaryDark,
-                tertiaryContainer = TertiaryContainerDark,
-                onTertiaryContainer = OnTertiaryContainerDark,
-                error = ErrorDark,
-                onError = OnErrorDark,
-                errorContainer = ErrorContainerDark,
-                onErrorContainer = OnErrorContainerDark,
-                background = BackgroundDark,
-                onBackground = OnBackgroundDark,
-                surface = SurfaceDark,
-                onSurface = OnSurfaceDark,
-                surfaceVariant = SurfaceVariantDark,
-                onSurfaceVariant = OnSurfaceVariantDark,
-                outline = OutlineDark,
-        )
-
-// Composable function to provide the color scheme based on Android version and theme
 @Composable
-fun getCurrentColorScheme(darkTheme: Boolean): ColorScheme {
-    val context = LocalContext.current
-
-    return if (darkTheme) DarkColorScheme else LightColorScheme
-}
+fun getCurrentColorScheme(darkTheme: Boolean): ColorScheme = LcdColorScheme
 
 @Composable
 fun GShockSmartSyncTheme(
-        darkTheme: Boolean = isSystemInDarkTheme(),
-        // Dynamic color is available on Android 12+
-        dynamicColor: Boolean = true,
+        darkTheme: Boolean = false,
+        dynamicColor: Boolean = false,
         content: @Composable () -> Unit
 ) {
-    val colorScheme =
-            when {
-                dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-                    val context = LocalContext.current
-                    if (darkTheme) dynamicDarkColorScheme(context)
-                    else dynamicLightColorScheme(context)
-                }
-                darkTheme -> DarkColorScheme
-                else -> LightColorScheme
-            }
-
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
@@ -103,17 +68,26 @@ fun GShockSmartSyncTheme(
             val window = activity?.window
 
             if (window != null) {
-                // Configure light or dark appearance for the status bar icons
+                // The LCD backing is light, so status bar icons must be dark.
                 val insetsController = WindowCompat.getInsetsController(window, view)
-                insetsController.isAppearanceLightStatusBars = !darkTheme
+                insetsController.isAppearanceLightStatusBars = true
+                insetsController.isAppearanceLightNavigationBars = true
             }
         }
     }
 
     MaterialTheme(
-            colorScheme = colorScheme,
+            colorScheme = LcdColorScheme,
             shapes = Shapes,
             typography = Typography,
-            content = content
-    )
+    ) {
+        // Material3's Text reads LocalTextStyle, which defaults to TextStyle.Default
+        // (sans-serif) rather than to the typography above. Without this, every bare
+        // Text call in the app would keep the old font.
+        //
+        // Only the family is provided, deliberately. Providing a full style such as
+        // bodyLarge would also impose its lineHeight on callers that override just
+        // fontSize -- a 36.sp alarm clock would end up in a 24.sp line box.
+        ProvideTextStyle(TextStyle(fontFamily = FontFamily.Monospace), content)
+    }
 }

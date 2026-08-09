@@ -24,7 +24,7 @@ fun AppTextVeryLarge(
     ),
     fontStyle: FontStyle? = null,
     fontWeight: FontWeight? = null,
-    fontFamily: FontFamily? = null,
+    fontFamily: FontFamily? = FontFamily.Monospace,
     letterSpacing: TextUnit = TextUnit.Unspecified,
     textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,

@@ -25,7 +25,9 @@ fun SeparatorView() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 12.dp)
+            // Breathing room above, so the heading reads as starting a new group
+            // rather than being clamped to the card above it.
+            .padding(start = 12.dp, top = 20.dp, bottom = 4.dp)
             .wrapContentHeight(),
         verticalAlignment = Alignment.CenterVertically
     ) {

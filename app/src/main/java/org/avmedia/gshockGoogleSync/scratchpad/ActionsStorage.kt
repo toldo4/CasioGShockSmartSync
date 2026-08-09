@@ -25,7 +25,12 @@ class ActionsStorage @Inject constructor(
         // bit positions of later actions (and the encoded size) match watches that
         // already have settings saved in their scratchpad.
         PRAYER_ALARMS_RESERVED,
-        PHONE_CALL
+        PHONE_CALL,
+
+        // Appended, never inserted: ordinal == bit position, so a new entry must go last or
+        // every later action's saved state shifts. 10 bits still encodes to 2 bytes
+        // (ceil(10/8)), so the fixed scratchpad layout is unchanged.
+        PLAY_PAUSE
     }
 
     private val actionStates = BooleanArray(Action.entries.size).apply {

@@ -180,6 +180,7 @@ constructor(
             add(ToggleFlashlightAction("Toggle Flashlight", false))
             add(StartVoiceAssistAction("Start Voice Assistant", false))
             add(NextTrack("Skip to next track", false))
+            add(PlayPauseAction("Play / pause", false))
             add(FindPhoneAction(appContext.getString(R.string.find_phone), false))
             add(SetTimeAction(appContext.getString(R.string.set_time), true, watchTimeUpdater))
             add(
@@ -246,6 +247,7 @@ constructor(
                         is ToggleFlashlightAction -> ActionsStorage.Action.FLASHLIGHT
                         is StartVoiceAssistAction -> ActionsStorage.Action.VOICE_ASSIST
                         is NextTrack -> ActionsStorage.Action.SKIP_TO_NEXT_TRACK
+                        is PlayPauseAction -> ActionsStorage.Action.PLAY_PAUSE
                         is PhoneDialAction -> ActionsStorage.Action.PHONE_CALL
                         else -> null
                     }
@@ -263,6 +265,7 @@ constructor(
                         is ToggleFlashlightAction -> ActionsStorage.Action.FLASHLIGHT
                         is StartVoiceAssistAction -> ActionsStorage.Action.VOICE_ASSIST
                         is NextTrack -> ActionsStorage.Action.SKIP_TO_NEXT_TRACK
+                        is PlayPauseAction -> ActionsStorage.Action.PLAY_PAUSE
                         is PhoneDialAction -> ActionsStorage.Action.PHONE_CALL
                         else -> null
                     }
@@ -468,6 +471,51 @@ constructor(
                             AppSnackbar(context.getString(R.string.cannot_go_to_next_track))
                         }
                     }
+        }
+    }
+
+    /**
+     * Bound to NORMAL_CONNECTION (hold MODE for 3s) rather than the action button, so the
+     * SEARCH tap stays free for skip-to-next-track. Note the watch also uses that gesture to
+     * return to timekeeping mode, so playback toggles then too.
+     */
+    inner class PlayPauseAction(
+            override var title: String,
+            override var enabled: Boolean,
+    ) : Action(title, enabled, RunMode.ASYNC) {
+
+        override fun shouldRun(runEnvironment: RunEnvironment): Boolean {
+            return when (runEnvironment) {
+                RunEnvironment.NORMAL_CONNECTION -> enabled
+                RunEnvironment.ACTION_BUTTON_PRESSED -> false
+                RunEnvironment.AUTO_TIME_ADJUSTMENT -> false
+                RunEnvironment.FIND_PHONE_PRESSED -> false
+                RunEnvironment.ALWAYS_CONNECTED -> false
+            }
+        }
+
+        override fun run(context: Context) {
+            Timber.d("running ${this.javaClass.simpleName}")
+            runCatching {
+                val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+                val eventTime = SystemClock.uptimeMillis()
+                listOf(KeyEvent.ACTION_DOWN, KeyEvent.ACTION_UP).forEach { action ->
+                    audioManager.dispatchMediaKeyEvent(
+                            KeyEvent(
+                                    eventTime,
+                                    eventTime,
+                                    action,
+                                    KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE,
+                                    0
+                            )
+                    )
+                }
+            }
+                    .onFailure { Timber.e(it, "Play/pause dispatch failed") }
+        }
+
+        override suspend fun load(context: Context, actionsStorage: ActionsStorage) {
+            enabled = actionsStorage.getAction(ActionsStorage.Action.PLAY_PAUSE)
         }
     }
 

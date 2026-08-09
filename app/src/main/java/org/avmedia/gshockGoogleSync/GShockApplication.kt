@@ -109,6 +109,11 @@ class GShockApplication : Application(), IScreenManager {
     private fun setupActionSubscriptions() {
         val buttonActions = arrayOf(
             EventAction("ButtonPressedInfoReceived") {
+                Timber.i(
+                    "BUTTON action=${repository.isActionButtonPressed()} " +
+                        "normal=${repository.isNormalButtonPressed()} " +
+                        "findPhone=${repository.isFindPhoneButtonPressed()}"
+                )
                 when {
                     repository.isActionButtonPressed() ->
                         actionsViewModel.runActionsForActionButton(this)

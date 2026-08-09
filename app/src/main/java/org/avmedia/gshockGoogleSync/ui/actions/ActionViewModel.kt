@@ -35,6 +35,7 @@ import org.avmedia.gshockGoogleSync.ui.events.CalendarEvents
 import org.avmedia.gshockGoogleSync.ui.events.EventsModel
 import org.avmedia.gshockGoogleSync.utils.LocalDataStorage
 import org.avmedia.gshockGoogleSync.ui.common.IWatchFeatureManager
+import org.avmedia.gshockGoogleSync.utils.ActivityProvider
 import org.avmedia.gshockGoogleSync.utils.CyrillicToLatin
 import org.avmedia.gshockapi.Event
 import org.avmedia.gshockapi.EventAction
@@ -486,7 +487,9 @@ constructor(
 
         override fun shouldRun(runEnvironment: RunEnvironment): Boolean {
             return when (runEnvironment) {
-                RunEnvironment.NORMAL_CONNECTION -> enabled
+                // Suppressed while the app is on screen: the same gesture is how you reach the
+                // settings UI, so holding MODE to get there should not also toggle playback.
+                RunEnvironment.NORMAL_CONNECTION -> enabled && !ActivityProvider.isInForeground()
                 RunEnvironment.ACTION_BUTTON_PRESSED -> false
                 RunEnvironment.AUTO_TIME_ADJUSTMENT -> false
                 RunEnvironment.FIND_PHONE_PRESSED -> false

@@ -34,7 +34,7 @@ fun TimeScreen(timeViewModel: TimeViewModel = hiltViewModel()) {
     GShockSmartSyncTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
             ConstraintLayout {
-                val (title, localTime, timer, watchName, watchInfo) = createRefs()
+                val (title, localTime, timer, watchName) = createRefs()
 
                 ScreenTitle(
                         stringResource(id = R.string.time),
@@ -64,24 +64,15 @@ fun TimeScreen(timeViewModel: TimeViewModel = hiltViewModel()) {
                                 }
                 )
 
+                // WatchInfoView (Home Time / battery / temperature) is hidden for now.
                 WatchNameView(
                         modifier =
                                 Modifier.fillMaxWidth().constrainAs(watchName) {
                                     top.linkTo(timer.bottom)
-                                    bottom.linkTo(watchInfo.top)
-                                    start.linkTo(parent.start)
-                                    end.linkTo(parent.end)
-                                    height = Dimension.fillToConstraints
-                                }
-                )
-
-                WatchInfoView(
-                        modifier =
-                                Modifier.fillMaxWidth().constrainAs(watchInfo) {
-                                    top.linkTo(watchName.bottom)
                                     bottom.linkTo(parent.bottom)
                                     start.linkTo(parent.start)
                                     end.linkTo(parent.end)
+                                    height = Dimension.fillToConstraints
                                 }
                 )
             }

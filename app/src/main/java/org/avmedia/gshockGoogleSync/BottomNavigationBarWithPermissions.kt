@@ -124,7 +124,7 @@ fun BottomNavigationBarWithPermissions(
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screens.Time.route,
+            startDestination = Screens.Actions.route,
             modifier = Modifier.padding(paddingValues = paddingValues)
         ) {
             composable(Screens.Time.route) {

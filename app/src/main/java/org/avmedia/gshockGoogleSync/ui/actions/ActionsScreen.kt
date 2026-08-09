@@ -1,7 +1,6 @@
 package org.avmedia.gshockGoogleSync.ui.actions
 
 import PhoneView
-import PhotoView
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -104,11 +103,10 @@ private fun createActionItems(actionsViewModel: ActionsViewModel): List<Any> {
         if (watchFeatureManager.isFeatureSupported("actions.find_phone"))
             PhoneFinderView(actionsViewModel::updateAction, actionsViewModel)
         else null,
-        SetTimeView(actionsViewModel::updateAction, actionsViewModel),
+        // SetTimeView and PhotoView are hidden for now.
         if (watchFeatureManager.isFeatureSupported("actions.reminders"))
             RemindersView(actionsViewModel::updateAction, actionsViewModel)
         else null,
-        PhotoView(actionsViewModel::updateAction, actionsViewModel),
         FlashlightView(actionsViewModel::updateAction, actionsViewModel),
         VoiceAssistView(actionsViewModel::updateAction, actionsViewModel),
         SkipToNextTrackView(actionsViewModel::updateAction, actionsViewModel),

@@ -25,7 +25,6 @@ import org.avmedia.gshockGoogleSync.ui.common.CrashLogDialog
 import org.avmedia.gshockGoogleSync.ui.others.CoverScreen
 import org.avmedia.gshockGoogleSync.ui.others.PreConnectionScreen
 import org.avmedia.gshockGoogleSync.ui.others.RunActionsScreen
-import org.avmedia.gshockGoogleSync.ui.others.RunFindPhoneScreen
 import org.avmedia.gshockGoogleSync.utils.ActivityProvider
 import org.avmedia.gshockGoogleSync.utils.CrashReportHelper
 import org.avmedia.gshockGoogleSync.ui.actions.ActionsViewModel
@@ -233,10 +232,8 @@ class GShockApplication : Application(), IScreenManager {
                 RunActionsScreen()
             }
 
-            repository.isFindPhoneButtonPressed() -> {
-                RunFindPhoneScreen()
-            }
-
+            // No branch for isFindPhoneButtonPressed(): that gesture now starts the voice
+            // assistant, which draws its own UI over ours, so we just show the normal app.
             else -> {
                 BottomNavigationBarWithPermissions(
                     repository = repository,

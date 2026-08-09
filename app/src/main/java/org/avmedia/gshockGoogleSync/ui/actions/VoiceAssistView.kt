@@ -22,6 +22,7 @@ fun VoiceAssistView(
     ActionItem(
         title = stringResource(id = R.string.start_voice_assistant),
         resourceId = R.drawable.voice_assist,
+        infoText = stringResource(id = R.string.start_voice_assistant_info),
         isEnabled = isEnabled,
         onEnabledChange = { newValue ->
             isEnabled = newValue

@@ -122,6 +122,7 @@ Turn your watch into a remote control. Assign actions to button presses on the w
   - **Voice Assist**: Launch Google Assistant.
   - **Set Prayer Alarms**: Set the watch's 5 alarms to Islamic Prayer Times
 - **How to use**: Short-press the lower-right button on the watch (when in Time mode) to trigger the selected action.
+- **Voice Assist shortcut**: Holding the **SEARCH** button for 3 seconds — the watch's built-in Find Phone gesture — launches the voice assistant instead of ringing the phone. It works whether or not the Voice Assist switch is on. To ring the phone, enable **Find Phone** and use the action button.
 
 *Note*: The **Take Photo** action requires the app to be in the foreground. If the app is in the background, the action will not work.
 

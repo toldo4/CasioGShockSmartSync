@@ -22,6 +22,7 @@ fun PhoneFinderView(
     ActionItem(
         title = stringResource(id = R.string.find_phone),
         resourceId = R.drawable.find_phone,
+        infoText = stringResource(id = R.string.find_phone_info),
         isEnabled = isEnabled,
         onEnabledChange = { newValue ->
             isEnabled = newValue  // Update local state immediately

@@ -211,7 +211,7 @@ sequenceDiagram
 `ActionRunner` (`ui/actions/ActionRunner.kt`) listens for `ButtonPressedInfoReceived` events from `ProgressEvents`:
 
 - **Action Button (Lower-Right)**: Triggers enabled routines in `ActionsViewModel` (e.g., Flashlight, Camera capture, Voice assistant, Media next track).
-- **Find Phone Button**: Executes `ActionViewModel.runActionFindPhone()`, initiating high-volume audio playback via `PhoneFinder`.
+- **Find Phone Button (hold SEARCH for 3s)**: Executes `ActionViewModel.runActionFindPhone()`. This gesture is remapped to `StartVoiceAssistAction`, which fires an `ACTION_VOICE_COMMAND` intent. Ringing the phone via `PhoneFinder` stays on the action button, gated by the "Find Phone" switch.
 - **Auto Time Sync Button**: Triggers `WatchTimeUpdater.update()` to sync phone clock precision to the watch hands/display.
 
 ### Remote Execution Modules

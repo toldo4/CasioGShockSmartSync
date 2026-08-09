@@ -28,7 +28,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.avmedia.gshockGoogleSync.R
 
@@ -107,34 +106,6 @@ fun RunActionsScreen() {
                 )
             }
         }
-    }
-}
-
-@Composable
-fun RunFindPhoneScreen() {
-    // 1. Resolve strings at the top level using stringResource
-    val title = stringResource(R.string.find_phone)
-    val instruction = stringResource(R.string.when_found_lift_phone_to_stop_ringing)
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
-        contentAlignment = Alignment.Center
-    ) {
-        // 2. Combine the pre-resolved strings
-        val text = remember(title, instruction) {
-            "$title\n\n\n$instruction"
-        }
-
-        AppTextExtraLarge(
-            text = text,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            textAlign = TextAlign.Center
-        )
     }
 }
 

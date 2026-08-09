@@ -211,7 +211,8 @@ constructor(
         NORMAL_CONNECTION, // Connected by long-pressing the LOWER-LEFT button
         ACTION_BUTTON_PRESSED, // Connected by short-pressing the LOWER-RIGHT button
         AUTO_TIME_ADJUSTMENT, // Connected automatically during auto time update
-        FIND_PHONE_PRESSED, // The user has activated the "Find Phone" function
+        FIND_PHONE_PRESSED, // The watch's "Find Phone" gesture (hold SEARCH for 3s). Remapped to
+        // start the voice assistant instead of ringing the phone.
         ALWAYS_CONNECTED, // Some watches are always connected, but the watch keeps connecting and
         // disconnecting periodically.
     }
@@ -342,7 +343,9 @@ constructor(
                 RunEnvironment.NORMAL_CONNECTION -> false
                 RunEnvironment.ACTION_BUTTON_PRESSED -> enabled && watchFeatureManager.isFeatureSupported("actions.find_phone")
                 RunEnvironment.AUTO_TIME_ADJUSTMENT -> false
-                RunEnvironment.FIND_PHONE_PRESSED -> true
+                // The hold-SEARCH-for-3s gesture now starts the voice assistant instead; ringing
+                // the phone is still available from the action button when enabled.
+                RunEnvironment.FIND_PHONE_PRESSED -> false
                 RunEnvironment.ALWAYS_CONNECTED -> false
             }
         }
@@ -409,10 +412,26 @@ constructor(
         }
     }
 
+    /**
+     * Also bound to FIND_PHONE_PRESSED (hold SEARCH for 3s), which used to ring the phone. Like
+     * the find-phone gesture it replaced, that gesture is dedicated and unambiguous, so it starts
+     * the assistant regardless of [enabled]; the toggle only governs the action button.
+     */
     inner class StartVoiceAssistAction(
             override var title: String,
             override var enabled: Boolean,
     ) : Action(title, enabled, RunMode.SYNC) {
+
+        override fun shouldRun(runEnvironment: RunEnvironment): Boolean {
+            return when (runEnvironment) {
+                RunEnvironment.ACTION_BUTTON_PRESSED -> enabled
+                RunEnvironment.FIND_PHONE_PRESSED -> true
+                RunEnvironment.NORMAL_CONNECTION -> false
+                RunEnvironment.AUTO_TIME_ADJUSTMENT -> false
+                RunEnvironment.ALWAYS_CONNECTED -> false
+            }
+        }
+
         override fun run(context: Context) {
             Timber.d("running ${this.javaClass.simpleName}")
             runCatching {
@@ -706,6 +725,7 @@ constructor(
         }
     }
 
+    /** Runs whatever is bound to the watch's find-phone gesture (hold SEARCH for 3s). */
     fun runActionFindPhone(context: Context) {
         val actionsToRun = _actions.value.filter { it.shouldRun(RunEnvironment.FIND_PHONE_PRESSED) }
         runFilteredActions(context, actionsToRun)

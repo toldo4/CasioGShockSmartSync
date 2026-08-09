@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Casio ABL-100WE, drawn as a flat monochrome glyph.
+
+  Adaptive-icon geometry: the canvas is 108x108, but only the centred 66dp circle is
+  guaranteed to survive every launcher mask. Every shape below stays inside a circle of
+  radius 33 around (54,54); the bracelet corners are the binding constraint at ~32.8,
+  which is what caps the bracelet width.
+
+  Square corners throughout, matching the app's own retro treatment.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!--
+      Bracelet, two links above and two below. Kept wide relative to the case: the
+      ABL-100WE has an integrated bracelet, and a narrow one reads as a strap watch.
+    -->
+    <path android:fillColor="#FFFFFFFF" android:pathData="M41,24h26v4h-26z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M41,30h26v4h-26z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M41,74h26v4h-26z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M41,80h26v4h-26z"/>
+
+    <!-- Pushers: two per side, as on the real four-button case. -->
+    <path android:fillColor="#FFFFFFFF" android:pathData="M30,42h3v5h-3z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M30,61h3v5h-3z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M75,42h3v5h-3z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M75,61h3v5h-3z"/>
+
+    <!--
+      Case and display in one path with evenOdd, so the display is a true hole rather
+      than a black rectangle painted on top. That keeps this file reusable as the
+      monochrome layer, where the system supplies its own colours.
+    -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M33,36h42v36h-42z M39,43h30v22h-30z"/>
+
+    <!-- Read-out: day strip over a two-group time with a colon. -->
+    <path android:fillColor="#FFFFFFFF" android:pathData="M43,46h22v2h-22z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M43,52h8v10h-8z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M53.5,54h2.5v2.5h-2.5z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M53.5,59h2.5v2.5h-2.5z"/>
+    <path android:fillColor="#FFFFFFFF" android:pathData="M58,52h8v10h-8z"/>
+</vector>
